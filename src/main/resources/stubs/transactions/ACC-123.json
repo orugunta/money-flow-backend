@@ -1,0 +1,9 @@
+{
+  "accountId": "ACC-123",
+  "currency": "EUR",
+  "transactions": [
+    { "id": "t1", "bookingDate": "2026-07-01", "amount": 3000.00, "type": "CREDIT", "description": "Salary" },
+    { "id": "t2", "bookingDate": "2026-07-31", "amount": 1000.00, "type": "DEBIT", "description": "Rent" },
+    { "id": "t3", "bookingDate": "2026-08-01", "amount": 2500.00, "type": "CREDIT", "description": "Salary" }
+  ]
+}

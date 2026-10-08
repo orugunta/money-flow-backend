@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: money-flow-backend
+  autoconfigure:
+    # Callers authenticate with an API key, so Boot's default user (and its logged password) isn't needed.
+    exclude: org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoConfiguration
+
+moneyflow:
+  security:
+    api-key: ${MONEYFLOW_API_KEY:}
+  statement-api:
+    base-url: ${STATEMENT_API_BASE_URL:}
+    api-key: ${STATEMENT_API_KEY:}
+  balance-api:
+    base-url: ${BALANCE_API_BASE_URL:}
+    api-key: ${BALANCE_API_KEY:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# OpenAPI document (/v3/api-docs) and Swagger UI (/swagger-ui.html) are public when on, so they are off unless asked
+# for: on in the stub profile, elsewhere with SPRINGDOC_API_DOCS_ENABLED=true and SPRINGDOC_SWAGGER_UI_ENABLED=true.
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

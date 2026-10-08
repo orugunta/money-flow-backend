@@ -1,0 +1,10 @@
+# Local runs without any setup. Override with MONEYFLOW_API_KEY; never use this default outside the stub profile.
+moneyflow:
+  security:
+    api-key: ${MONEYFLOW_API_KEY:local-dev-key}
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
