@@ -1,0 +1,99 @@
+{
+  "mappings": [
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-123/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "ACC-123.json"
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-456/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "ACC-456.json"
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-EMPTY/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "ACC-EMPTY.json"
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-PUSH-FLAKY/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "ACC-PUSH-FLAKY.json"
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-REJECT/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "ACC-REJECT.json"
+      }
+    }
+  ]
+}

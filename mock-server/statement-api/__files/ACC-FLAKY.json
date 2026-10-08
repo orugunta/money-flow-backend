@@ -1,0 +1,55 @@
+{
+  "accountId": "ACC-FLAKY",
+  "currency": "EUR",
+  "transactions": [
+    {
+      "id": "f1",
+      "bookingDate": "2026-07-01",
+      "amount": 1000.0,
+      "type": "CREDIT",
+      "description": "Salary"
+    },
+    {
+      "id": "f2",
+      "bookingDate": "2026-07-10",
+      "amount": 250.0,
+      "type": "DEBIT",
+      "description": "Utilities"
+    },
+    {
+      "id": "f3",
+      "bookingDate": "2026-07-10",
+      "amount": 250.0,
+      "type": "DEBIT",
+      "description": "Utilities"
+    },
+    {
+      "id": "f4",
+      "bookingDate": "2026-07-10",
+      "amount": 150.0,
+      "type": "DEBIT",
+      "description": "Utilities"
+    },
+    {
+      "id": "f5",
+      "bookingDate": "2026-07-01",
+      "amount": 1500.0,
+      "type": "CREDIT",
+      "description": "Loan-Approved"
+    },
+    {
+      "id": "f6",
+      "bookingDate": "2026-07-01",
+      "amount": 1600.0,
+      "type": "DEBIT",
+      "description": "Loan-Repaid"
+    },
+    {
+      "id": "f7",
+      "bookingDate": "2026-07-01",
+      "amount": 100.0,
+      "type": "DEBIT",
+      "description": "Loan-Repaid"
+    }
+  ]
+}

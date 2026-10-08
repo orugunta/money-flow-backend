@@ -1,0 +1,48 @@
+{
+  "accountId": "ACC-123",
+  "currency": "EUR",
+  "transactions": [
+    {
+      "id": "t1",
+      "bookingDate": "2026-07-01",
+      "amount": 3000.0,
+      "type": "CREDIT",
+      "description": "Salary"
+    },
+    {
+      "id": "t2",
+      "bookingDate": "2026-07-03",
+      "amount": 1200.0,
+      "type": "DEBIT",
+      "description": "Rent"
+    },
+    {
+      "id": "t3",
+      "bookingDate": "2026-07-31",
+      "amount": 85.4,
+      "type": "DEBIT",
+      "description": "Groceries"
+    },
+    {
+      "id": "t4",
+      "bookingDate": "2026-08-01",
+      "amount": 3000.0,
+      "type": "CREDIT",
+      "description": "Salary"
+    },
+    {
+      "id": "t5",
+      "bookingDate": "2026-08-15",
+      "amount": 4500.0,
+      "type": "DEBIT",
+      "description": "Car repair"
+    },
+    {
+      "id": "t6",
+      "bookingDate": "2026-09-01",
+      "amount": 3000.0,
+      "type": "CREDIT",
+      "description": "Salary"
+    }
+  ]
+}

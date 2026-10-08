@@ -1,0 +1,20 @@
+{
+  "accountId": "ACC-456",
+  "currency": "JPY",
+  "transactions": [
+    {
+      "id": "j1",
+      "bookingDate": "2026-07-25",
+      "amount": 350000,
+      "type": "CREDIT",
+      "description": "Salary"
+    },
+    {
+      "id": "j2",
+      "bookingDate": "2026-07-28",
+      "amount": 120000,
+      "type": "DEBIT",
+      "description": "Rent"
+    }
+  ]
+}

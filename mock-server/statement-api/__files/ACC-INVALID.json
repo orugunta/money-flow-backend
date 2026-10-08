@@ -1,0 +1,13 @@
+{
+  "accountId": "ACC-INVALID",
+  "currency": "EUR",
+  "transactions": [
+    {
+      "id": "x1",
+      "bookingDate": "2026-07-01",
+      "amount": -50.0,
+      "type": "CREDIT",
+      "description": "Negative amount breaks the contract"
+    }
+  ]
+}

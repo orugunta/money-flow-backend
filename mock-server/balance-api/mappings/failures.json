@@ -1,0 +1,199 @@
+{
+  "mappings": [
+    {
+      "priority": 0,
+      "request": {
+        "method": "PUT",
+        "urlPathPattern": "/monthly-balances/ACC-REJECT/[0-9]{4}-(0[1-9]|1[0-2])",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "balance-key"
+          },
+          "Content-Type": {
+            "contains": "application/json"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesJsonSchema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "accountId",
+                "month",
+                "currency",
+                "totalIncome",
+                "totalSpending",
+                "balance"
+              ],
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9-]{1,64}$"
+                },
+                "month": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z]{3}$"
+                },
+                "totalIncome": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "totalSpending": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "balance": {
+                  "type": "number"
+                }
+              }
+            },
+            "schemaVersion": "V202012"
+          }
+        ]
+      },
+      "response": {
+        "status": 422,
+        "headers": {
+          "Content-Type": "application/problem+json"
+        },
+        "jsonBody": {
+          "type": "about:blank",
+          "title": "Unprocessable Entity",
+          "status": 422,
+          "detail": "Month is closed for ACC-REJECT."
+        }
+      }
+    },
+    {
+      "priority": 0,
+      "scenarioName": "balance-flaky",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "recovered",
+      "request": {
+        "method": "PUT",
+        "urlPathPattern": "/monthly-balances/ACC-PUSH-FLAKY/[0-9]{4}-(0[1-9]|1[0-2])",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "balance-key"
+          },
+          "Content-Type": {
+            "contains": "application/json"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesJsonSchema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "accountId",
+                "month",
+                "currency",
+                "totalIncome",
+                "totalSpending",
+                "balance"
+              ],
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9-]{1,64}$"
+                },
+                "month": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z]{3}$"
+                },
+                "totalIncome": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "totalSpending": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "balance": {
+                  "type": "number"
+                }
+              }
+            },
+            "schemaVersion": "V202012"
+          }
+        ]
+      },
+      "response": {
+        "status": 503
+      }
+    },
+    {
+      "priority": 0,
+      "scenarioName": "balance-flaky",
+      "requiredScenarioState": "recovered",
+      "newScenarioState": "Started",
+      "request": {
+        "method": "PUT",
+        "urlPathPattern": "/monthly-balances/ACC-PUSH-FLAKY/[0-9]{4}-(0[1-9]|1[0-2])",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "balance-key"
+          },
+          "Content-Type": {
+            "contains": "application/json"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesJsonSchema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "accountId",
+                "month",
+                "currency",
+                "totalIncome",
+                "totalSpending",
+                "balance"
+              ],
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9-]{1,64}$"
+                },
+                "month": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z]{3}$"
+                },
+                "totalIncome": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "totalSpending": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "balance": {
+                  "type": "number"
+                }
+              }
+            },
+            "schemaVersion": "V202012"
+          }
+        ]
+      },
+      "response": {
+        "status": 200
+      }
+    }
+  ]
+}

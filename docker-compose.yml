@@ -1,0 +1,54 @@
+# money-flow-backend plus mock versions of both external APIs (mock-server/), for local end-to-end runs.
+#   docker compose up -d --build --wait                    # everything
+#   docker compose up -d --wait statement-api balance-api  # only the mocks, app from Maven
+#   scripts/e2e.sh
+# The keys below are the mock server's dummy keys; real deployments set these variables themselves.
+name: money-flow
+
+services:
+  # Mock Statement API on :9091
+  statement-api:
+    image: wiremock/wiremock:3.13.2
+    ports:
+      - "9091:8080"
+    volumes:
+      - ./mock-server/statement-api:/home/wiremock:ro
+    command: ["--disable-banner"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/__admin/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Mock Balance API on :9092
+  balance-api:
+    image: wiremock/wiremock:3.13.2
+    ports:
+      - "9092:8080"
+    volumes:
+      - ./mock-server/balance-api:/home/wiremock:ro
+    command: ["--disable-banner"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/__admin/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  money-flow-backend:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      STATEMENT_API_BASE_URL: http://statement-api:8080
+      STATEMENT_API_KEY: statement-key
+      BALANCE_API_BASE_URL: http://balance-api:8080
+      BALANCE_API_KEY: balance-key
+      MONEYFLOW_API_KEY: ${MONEYFLOW_API_KEY:-local-dev-key}
+      # API docs are off by default; on here because this stack is for local testing only.
+      SPRINGDOC_API_DOCS_ENABLED: "true"
+      SPRINGDOC_SWAGGER_UI_ENABLED: "true"
+    depends_on:
+      statement-api:
+        condition: service_healthy
+      balance-api:
+        condition: service_healthy

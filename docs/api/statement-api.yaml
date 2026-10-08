@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: Statement API (assumed contract)
+  version: 0.1.0
+  description: >
+    Proposed contract for the external Statement API, consumed by money-flow-backend.
+    To be agreed with the API owners.
+servers:
+  - url: https://statement-api.example.com
+security:
+  - apiKey: []
+paths:
+  /accounts/{accountId}/transactions:
+    get:
+      summary: List an account's transactions
+      operationId: getTransactions
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: "^[A-Za-z0-9-]{1,64}$"
+      responses:
+        "200":
+          description: The account's transactions, in any order
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionsResponse"
+        "404":
+          description: Account not found
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    TransactionsResponse:
+      type: object
+      required: [accountId, currency, transactions]
+      properties:
+        accountId:
+          type: string
+          example: ACC-123
+        currency:
+          type: string
+          description: ISO 4217 code. All amounts are in this currency.
+          example: EUR
+        transactions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Transaction"
+    Transaction:
+      type: object
+      required: [id, bookingDate, amount, type]
+      properties:
+        id:
+          type: string
+          example: t1
+        bookingDate:
+          type: string
+          format: date
+          example: "2026-07-01"
+        amount:
+          type: number
+          minimum: 0
+          description: Always non-negative. The direction is given by `type`.
+          example: 3000.00
+        type:
+          type: string
+          enum: [CREDIT, DEBIT]
+          description: CREDIT is income, DEBIT is spending.
+        description:
+          type: string
+          example: Salary

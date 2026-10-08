@@ -1,0 +1,121 @@
+{
+  "mappings": [
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-INVALID/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "ACC-INVALID.json"
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-MALFORMED/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\"accountId\": \"ACC-MALFORMED\", \"transactions\": ["
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-DOWN/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 503
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-SLOW/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "fixedDelayMilliseconds": 10000,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "accountId": "ACC-SLOW",
+          "currency": "EUR",
+          "transactions": []
+        }
+      }
+    },
+    {
+      "priority": 1,
+      "scenarioName": "statement-flaky",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "recovered",
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-FLAKY/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 503
+      }
+    },
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "urlPath": "/accounts/ACC-FLAKY/transactions",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "statement-key"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "ACC-FLAKY.json"
+      },
+      "scenarioName": "statement-flaky",
+      "requiredScenarioState": "recovered",
+      "newScenarioState": "Started"
+    }
+  ]
+}

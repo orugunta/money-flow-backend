@@ -1,0 +1,50 @@
+{
+  "mappings": [
+    {
+      "priority": 10,
+      "request": {
+        "urlPathPattern": "/monthly-balances/.*",
+        "headers": {
+          "X-API-Key": {
+            "absent": true
+          }
+        }
+      },
+      "response": {
+        "status": 401,
+        "headers": {
+          "Content-Type": "application/problem+json"
+        },
+        "jsonBody": {
+          "type": "about:blank",
+          "title": "Unauthorized",
+          "status": 401,
+          "detail": "A valid X-API-Key header is required."
+        }
+      }
+    },
+    {
+      "priority": 10,
+      "request": {
+        "urlPathPattern": "/monthly-balances/.*",
+        "headers": {
+          "X-API-Key": {
+            "doesNotMatch": "^balance-key$"
+          }
+        }
+      },
+      "response": {
+        "status": 401,
+        "headers": {
+          "Content-Type": "application/problem+json"
+        },
+        "jsonBody": {
+          "type": "about:blank",
+          "title": "Unauthorized",
+          "status": 401,
+          "detail": "A valid X-API-Key header is required."
+        }
+      }
+    }
+  ]
+}

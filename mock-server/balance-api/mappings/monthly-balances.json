@@ -1,0 +1,88 @@
+{
+  "mappings": [
+    {
+      "priority": 1,
+      "request": {
+        "method": "PUT",
+        "urlPathPattern": "/monthly-balances/[A-Za-z0-9-]{1,64}/[0-9]{4}-(0[1-9]|1[0-2])",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "balance-key"
+          },
+          "Content-Type": {
+            "contains": "application/json"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesJsonSchema": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "accountId",
+                "month",
+                "currency",
+                "totalIncome",
+                "totalSpending",
+                "balance"
+              ],
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9-]{1,64}$"
+                },
+                "month": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z]{3}$"
+                },
+                "totalIncome": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "totalSpending": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "balance": {
+                  "type": "number"
+                }
+              }
+            },
+            "schemaVersion": "V202012"
+          }
+        ]
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "priority": 5,
+      "request": {
+        "method": "PUT",
+        "urlPathPattern": "/monthly-balances/[A-Za-z0-9-]{1,64}/[0-9]{4}-(0[1-9]|1[0-2])",
+        "headers": {
+          "X-API-Key": {
+            "equalTo": "balance-key"
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "headers": {
+          "Content-Type": "application/problem+json"
+        },
+        "jsonBody": {
+          "type": "about:blank",
+          "title": "Bad Request",
+          "status": 400,
+          "detail": "Body must be a MonthlyBalance JSON object (see balance-api.yaml)."
+        }
+      }
+    }
+  ]
+}
